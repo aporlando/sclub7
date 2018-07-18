@@ -1,0 +1,21 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Bingo with Betty",
+      "start": "2018-07-20 15:00:00",
+      "stop": "2018-07-20 17:00:00",
+      "tags": [ 1, 2 ]
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "name": "bingo"
+    },
+    {
+      "id": 2,
+      "name": "prizes"
+    }
+  ]
+}
