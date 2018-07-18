@@ -19,7 +19,6 @@ class Home extends Component {
             start: new Date(event.start),
             end: new Date(event.stop)
         }));
-        console.log(this.props.events, events);
         return (
             <div>
                 <div>There are {this.props.events.length} events.</div>
