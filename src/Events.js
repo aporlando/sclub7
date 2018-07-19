@@ -17,13 +17,14 @@ class Events extends Component {
     render() {
         const { events } = this.props;
         return (
-            <div className={'Home'}>
+            <div className={'Events'}>
                 <h1>Community Events</h1>
                 <BigCalendar
                     events={events}
                     components={{
                         event: Event
                     }}
+                    popup
                 />
             </div>
         );

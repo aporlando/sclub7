@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, CREATE_EVENT } from "../types";
+import { FETCH_EVENTS, CREATE_EVENT, FETCH_TAGS } from "../types";
 import axios from 'axios';
 import FormData from 'form-data';
 import moment from 'moment';
@@ -30,7 +30,7 @@ window.createEvent = createEvent;
 
 export const fetchTags = () => {
     return {
-        type: FETCH_EVENTS,
+        type: FETCH_TAGS,
         payload: axios.get('/tag')
     }
 };

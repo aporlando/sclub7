@@ -1,27 +1,36 @@
 import { combineReducers } from 'redux';
-import { CREATE_EVENT, FETCH_EVENTS } from '../types';
+import { CREATE_EVENT, FETCH_EVENTS, FETCH_TAGS} from '../types';
 
 const initialState = {
     list: []
 };
 const tags = (state = initialState, action) => {
-    return state;
+    switch(action.type) {
+        case `${FETCH_TAGS}_SUCCESS`:
+            return {
+                ...state,
+                list: action.payload.data.objs || []
+            }
+        default:
+            return state;
+    }
 };
 const events = (state = initialState, action) => {
-    if (action.type === `${FETCH_EVENTS}_SUCCESS`) {
-        return {
-            ...state,
-            list: action.payload.data.objs || []
-        };
+    switch (action.type) {
+        case `${FETCH_EVENTS}_SUCCESS`:
+            return {
+                ...state,
+                list: action.payload.data.objs || []
+            };
+        case `${CREATE_EVENT}_SUCCESS`:
+            if (!action.payload.data.objs) return state;
+            return {
+                ...state,
+                list: [...state.list, action.payload.data.objs]
+            };
+        default:
+            return state;
     }
-    if (action.type === `${CREATE_EVENT}_SUCCESS`) {
-        if (!action.payload.data.objs) return state;
-        return {
-            ...state,
-            list: [...state.list, action.payload.data.objs]
-        };
-    }
-    return state;
 };
 
 export default combineReducers({

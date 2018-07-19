@@ -17,11 +17,8 @@ class Create extends Component {
     }
     handleSubmit(e) {
         e.preventDefault();
-        console.log('handle submit', this.state);
         this.props.createEvent({
             ...this.state
-        }).then((params) => {
-            console.log('created event', params);
         });
     }
     render() {

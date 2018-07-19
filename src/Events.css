@@ -1,3 +1,12 @@
+.Events {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .rbc-calendar {
-    min-height: 500px;
+    flex: 1 0 auto;
+    height: auto;
+}
+.rbc-toolbar-label {
+    font-size: 30px;
 }
