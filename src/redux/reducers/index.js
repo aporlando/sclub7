@@ -11,7 +11,7 @@ const events = (state = initialState, action) => {
     if (action.type === `${FETCH_EVENTS}_SUCCESS`) {
         return {
             ...state,
-            list: action.payload.data
+            list: action.payload.data.objs || []
         };
     }
     return state;

@@ -4,11 +4,11 @@ import { fetchEvents } from './redux/actions/index';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
-import './Home.css';
+import './Events.css';
 
 BigCalendar.momentLocalizer(moment);
 
-class Home extends Component {
+class Events extends Component {
     componentDidMount() {
         this.props.fetchEvents();
     }
@@ -16,13 +16,11 @@ class Home extends Component {
     render() {
         const events = this.props.events.map(event => ({
             ...event,
-            title: event.name,
-            start: new Date(event.start),
-            end: new Date(event.stop)
+            start: new Date(event.start_time),
+            end: new Date(event.end_time)
         }));
         return (
             <div className={'Home'}>
-                <div>There are {this.props.events.length} events.</div>
                 <BigCalendar
                     events={events}
                 />
@@ -39,4 +37,4 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, {
     fetchEvents
-})(Home);
+})(Events);
