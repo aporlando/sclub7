@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { FETCH_EVENTS } from '../types';
+import { CREATE_EVENT, FETCH_EVENTS } from '../types';
 
 const initialState = {
     list: []
@@ -12,6 +12,13 @@ const events = (state = initialState, action) => {
         return {
             ...state,
             list: action.payload.data.objs || []
+        };
+    }
+    if (action.type === `${CREATE_EVENT}_SUCCESS`) {
+        if (!action.payload.data.objs) return state;
+        return {
+            ...state,
+            list: [...state.list, action.payload.data.objs]
         };
     }
     return state;

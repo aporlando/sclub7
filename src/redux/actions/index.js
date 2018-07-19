@@ -1,5 +1,7 @@
-import { FETCH_EVENTS } from "../types";
+import { FETCH_EVENTS, CREATE_EVENT } from "../types";
 import axios from 'axios';
+import FormData from 'form-data';
+import moment from 'moment';
 
 axios.defaults.baseURL = '//0.0.0.0:9393/rest';
 axios.defaults.withCredentials = true;
@@ -10,6 +12,21 @@ export const fetchEvents = () => {
         payload: axios.get('/meeting')
     }
 };
+
+export const createEvent = ({ title, description, endTime, startTime }) => {
+    const data = new FormData();
+    data.append("model", JSON.stringify({
+        title,
+        description,
+        'end_time': moment(endTime).format('YYYY-MM-DD hh:mm'),
+        'start_time': moment(startTime).format('YYYY-MM-DD hh:mm')
+    }));
+    return {
+        type: CREATE_EVENT,
+        payload: axios.post('/meeting', data)
+    }
+};
+window.createEvent = createEvent;
 
 export const fetchTags = () => {
     return {
