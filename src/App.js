@@ -6,6 +6,7 @@ import rootReducer from './redux/reducers';
 import storeEnhancers from './redux/enhancers';
 import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Events from './Events';
+import Tags from './Tags';
 import Create from './event/Create';
 
 const store = createStore(
@@ -24,7 +25,10 @@ class App extends Component {
                             <div className={'navbar-collapse collapse'}>
                                 <ul className="navbar-nav mr-auto">
                                     <li className={`nav-item `}>
-                                        <NavLink activeClassName={'active'} className="nav-link" to={'/'}>Events</NavLink>
+                                        <NavLink exact activeClassName={'active'} className="nav-link" to={'/'}>Events</NavLink>
+                                    </li>
+                                    <li className={`nav-item `}>
+                                        <NavLink activeClassName={'active'} className="nav-link" to={'/tags'}>Tags</NavLink>
                                     </li>
                                 </ul>
                                 <NavLink to={'/create'} activeClassName={'d-none'} className="btn btn-outline-primary" type="button">Create Event</NavLink>
@@ -32,6 +36,7 @@ class App extends Component {
                         </nav>
                         <div className={'container-fluid mt-2'}>
                             <Route exact path="/" component={Events} />
+                            <Route exact path="/tags" component={Tags} />
                             <Route exact path="/create" component={Create} />
                         </div>
                     </div>
