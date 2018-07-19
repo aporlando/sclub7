@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 export default class Create extends Component {
     constructor(props) {
@@ -9,7 +10,6 @@ export default class Create extends Component {
     handleSubmit(e) {
         e.preventDefault();
         console.log('handle submit', e);
-        this.props.onSubmit();
     }
     render() {
         const { start, end } = this.props;
@@ -37,7 +37,8 @@ export default class Create extends Component {
                         <input name={'enddate'} type={'date'} defaultValue={defaultEnd} className={'form-control'}/>
                     </label>
                 </div>
-                <button type={'submit'} className={'btn btn-primary'}>Create</button>
+                <button type={'submit'} className={'btn btn-primary'}>Save Event</button>
+                <Link to={'/'} type={'button'} className={'btn btn-outline-secondary ml-1'}>Cancel</Link>
             </form>
         );
     }
