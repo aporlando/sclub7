@@ -4,8 +4,9 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import rootReducer from './redux/reducers';
 import storeEnhancers from './redux/enhancers';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
 import Events from './Events';
+import Create from './event/Create';
 
 const store = createStore(
     rootReducer,
@@ -18,12 +19,21 @@ class App extends Component {
             <Provider store={store}>
                 <Router>
                     <div className={'App'}>
-                        {/*<ul>*/}
-                            {/*<li>*/}
-                                {/*<Link to="/">Events</Link>*/}
-                            {/*</li>*/}
-                        {/*</ul>*/}
-                        <Route exact path="/" component={Events} />
+                        <nav className="navbar navbar-dark bg-dark navbar-expand">
+                            <span className={'navbar-brand'}>S Club 7</span>
+                            <div className={'navbar-collapse collapse'}>
+                                <ul className="navbar-nav mr-auto">
+                                    <li className={`nav-item `}>
+                                        <NavLink activeClassName={'active'} className="nav-link" to={'/'}>Events</NavLink>
+                                    </li>
+                                </ul>
+                                <NavLink to={'/create'} activeClassName={'d-none'} className="btn btn-outline-primary" type="button">Create Event</NavLink>
+                            </div>
+                        </nav>
+                        <div className={'container-fluid mt-2'}>
+                            <Route exact path="/" component={Events} />
+                            <Route exact path="/create" component={Create} />
+                        </div>
                     </div>
                 </Router>
             </Provider>
