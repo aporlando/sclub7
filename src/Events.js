@@ -5,6 +5,7 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Events.css';
+import Event from './event/Event';
 
 BigCalendar.momentLocalizer(moment);
 
@@ -17,8 +18,12 @@ class Events extends Component {
         const { events } = this.props;
         return (
             <div className={'Home'}>
+                <h1>Community Events</h1>
                 <BigCalendar
                     events={events}
+                    components={{
+                        event: Event
+                    }}
                 />
             </div>
         );
