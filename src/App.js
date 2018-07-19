@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import rootReducer from './redux/reducers';
 import storeEnhancers from './redux/enhancers';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Events from './Events';
 
 const store = createStore(
