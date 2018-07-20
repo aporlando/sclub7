@@ -6,3 +6,6 @@
 .AgendaEvent .Event {
     flex: 1 1 auto;
 }
+.AgendaEvent .TagList {
+    list-style: none;
+}

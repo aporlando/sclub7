@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './AgendaEvent.css';
 import Event from './Event';
-import Tag from '../tag/Tag';
-import { createSelector } from 'reselect';
+import { List as TagList } from '../tag/List';
 
 class AgendaEvent extends Component {
     render() {
@@ -13,11 +12,7 @@ class AgendaEvent extends Component {
                 <Event event={event} />
                 {tags && tags.length > 0 &&
                 <div className={'tags'}>
-                    {tags.map(tag => {
-                        return (
-                            <Tag key={tag.id} {...tag} />
-                        );
-                    })}
+                    <TagList tags={tags} />
                 </div>
                 }
             </div>
