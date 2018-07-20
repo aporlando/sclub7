@@ -5,7 +5,7 @@ export default class Event extends Component {
     render() {
         const { title, description } = this.props.event;
         return (
-            <div onClick={this.handleClick} style={{ position: 'relative' }}>
+            <div className={'Event'}>
                 <strong>{title}</strong>
                 {description && <div className={'eventDescription'}>{description}</div>}
             </div>

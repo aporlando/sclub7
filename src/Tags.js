@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTags } from './redux/actions';
+import List from './tag/List';
+import Create from './tag/Create';
 
 class Tags extends Component {
     componentDidMount() {
@@ -8,26 +10,16 @@ class Tags extends Component {
     }
 
     render() {
-        const { tags = [] } = this.props;
         return (
             <div>
                 <h1>Event Tags</h1>
-                <ul>
-                    {tags.map(tag => {
-                        return <li key={tag.id}>{tag.name}</li>;
-                    })}
-                </ul>
+                <List />
+                <Create />
             </div>
         );
     }
 };
 
-function mapStateToProps(state) {
-    return {
-        tags: state.tags.list || []
-    }
-}
-
-export default connect(mapStateToProps, {
+export default connect(null, {
     fetchTags
 })(Tags);

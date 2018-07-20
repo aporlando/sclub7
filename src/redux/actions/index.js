@@ -1,4 +1,4 @@
-import { FETCH_EVENTS, CREATE_EVENT, FETCH_TAGS } from "../types";
+import { FETCH_EVENTS, CREATE_EVENT, FETCH_TAGS, CREATE_TAG, UPDATE_EVENTS } from "../types";
 import axios from 'axios';
 import FormData from 'form-data';
 import moment from 'moment';
@@ -26,11 +26,41 @@ export const createEvent = ({ title, description, endTime, startTime }) => {
         payload: axios.post('/meeting', data)
     }
 };
-window.createEvent = createEvent;
 
-export const fetchTags = () => {
+export const fetchTags = ({ meeting } = {}) => {
+    const request = axios.get('/tag', {
+        params: {
+            meeting: meeting && meeting.id
+        }
+    });
     return {
         type: FETCH_TAGS,
-        payload: axios.get('/tag')
+        payload: request
+    }
+};
+
+export const createTag = ({ name }) => {
+    const data = new FormData();
+    data.append("model", JSON.stringify({
+        name
+    }));
+    return {
+        type: CREATE_TAG,
+        payload: axios.post('/tag', data)
+    }
+};
+
+export const addTag = ({ meeting, tag }) => {
+    const data = new FormData();
+    data.append("model", JSON.stringify({
+        ...meeting
+    }));
+    return {
+        type: UPDATE_EVENTS,
+        payload: axios.put(`/meeting/${meeting.id}`, data, {
+            params: {
+                tag: tag.id
+            }
+        })
     }
 };

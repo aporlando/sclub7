@@ -16,13 +16,17 @@ class Create extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleSubmit(e) {
+        const { history, createEvent } = this.props;
         e.preventDefault();
-        this.props.createEvent({
+        createEvent({
             ...this.state
+        }).then(() => {
+            history.replace('/');
         });
     }
     render() {
         const { title, description, startTime, endTime } = this.state;
+        console.log(this.props);
         return (
             <form onSubmit={this.handleSubmit}>
                 <div className={'form-group'}>

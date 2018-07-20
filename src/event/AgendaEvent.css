@@ -1,0 +1,8 @@
+.AgendaEvent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.AgendaEvent .Event {
+    flex: 1 1 auto;
+}

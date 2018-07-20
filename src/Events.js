@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchEvents } from './redux/actions/index';
+import { fetchEvents, fetchTags } from './redux/actions/index';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import './Events.css';
 import Event from './event/Event';
+import AgendaEvent from './event/AgendaEvent';
 
 BigCalendar.momentLocalizer(moment);
 
 class Events extends Component {
     componentDidMount() {
         this.props.fetchEvents();
+        this.props.fetchTags();
     }
 
     render() {
@@ -22,7 +24,10 @@ class Events extends Component {
                 <BigCalendar
                     events={events}
                     components={{
-                        event: Event
+                        event: Event,
+                        agenda: {
+                            event: AgendaEvent
+                        }
                     }}
                     popup
                 />
@@ -44,5 +49,6 @@ function mapStateToProps(state) {
 };
 
 export default connect(mapStateToProps, {
-    fetchEvents
+    fetchEvents,
+    fetchTags
 })(Events);
