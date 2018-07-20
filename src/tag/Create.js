@@ -17,8 +17,8 @@ class Tags extends Component {
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <input type={'text'} name={'tag'} value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} /><button type={'submit'} className={'btn btn-primary'}>Save Tag</button>
+            <form onSubmit={this.handleSubmit} className={'d-flex'}>
+                <input type={'text'} name={'tag'} value={this.state.name} onChange={(e) => this.setState({ name: e.target.value })} className={'form-control mr-1'}/><button type={'submit'} className={'btn btn-primary'}>Save Tag</button>
             </form>
         );
     }

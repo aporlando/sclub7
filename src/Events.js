@@ -37,7 +37,7 @@ class Events extends Component {
 };
 
 function mapStateToProps(state) {
-    const events = (state.events.list || []).map(event => ({
+    const events = Object.values(state.events.data).map(event => ({
         ...event,
         start: new Date(event.start_time),
         end: new Date(event.end_time),

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Tag from "./Tag";
 
 class Tags extends Component {
     render() {
         const { tags = [] } = this.props;
+
         return (
             <ul>
-                {tags.map(tag => {
-                    return <li key={tag.id}>{tag.name}</li>;
+                {Object.values(tags).map(tag => {
+                    return <li key={tag.id}><Tag {...tag} /></li>
                 })}
             </ul>
         );
@@ -16,7 +18,7 @@ class Tags extends Component {
 
 function mapStateToProps(state) {
     return {
-        tags: state.tags.list || []
+        tags: state.tags.data
     }
 }
 
